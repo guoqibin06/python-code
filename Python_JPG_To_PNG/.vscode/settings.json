@@ -1,0 +1,7 @@
+{
+  "python.defaultInterpreterPath": "D:\\Anaconda\\envs\\your_name\\python.exe",
+  "python.analysis.extraPaths": [
+    "D:\\Anaconda\\envs\\your_name\\Lib\\site-packages"
+  ],
+  "python.terminal.activateEnvironment": true
+}
