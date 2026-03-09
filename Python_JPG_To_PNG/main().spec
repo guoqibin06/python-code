@@ -5,7 +5,7 @@ a = Analysis(
     ['main().py', 'Remove_Watermark.py'],
     pathex=[],
     binaries=[],
-    datas=[],
+    datas=[('D:\\Anaconda\\envs\\your_name\\Library\\lib\\qt6\\plugins\\platforms', 'platforms')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},

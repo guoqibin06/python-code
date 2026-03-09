@@ -20,19 +20,22 @@ if ret == "批量更改格式为png":
             print("无效文件路径")
             sys.exit(0)
 
-        for img_converted_path in imlist:
+        for img_name in imlist:
             support_format_list = [".png",".jpg",".jpeg",".bmp", ".gif"]
             #还要试试出现空格中文行不行,用pathlib下的Path
-            img_converted_path = Path(img_converted_path)
-            if not img_converted_path.suffix.lower() in support_format_list:
+            img_name = Path(img_path)/img_name
+            if not img_name.is_file():
+                continue # 跳过文件夹
+            if not img_name.suffix.lower() in support_format_list:
                 continue
-            with Image.open(str(Path(img_path)/img_converted_path)) as img:
+            with Image.open(str(Path(img_path)/img_name)) as img:
                 new_img =img.convert("RGBA")
-                new_img.save(str(Path(savefolder)/img_converted_path.stem/".png"))
+                new_img.save(str(Path(savefolder)/img_name.stem)+".png")
+                converted_count += 1
         easygui.msgbox(msg=f"共转换{converted_count}",title="本次转换已完成")
     except Exception as e:
-        print(f"转换失败！错误信息：{str(e)}")
-        exit(1)
+        easygui.msgbox(msg=f"错误信息：{str(e)}",title="转换失败！")
+        sys.exit(1)
 elif ret == "去水印工具":
     video_path = easygui.fileopenbox(msg="请选择",title="要去水印的单个视频")
     if not video_path:
